@@ -1,0 +1,57 @@
+Magic : 7f 45 4c 46 1 1 1 0 0 0 0 0 0 0 0 0 
+e_typ : 2
+e_machine : 3
+e_version : 1
+e_entry : 8048310
+e_phoff : 34
+e_shoff : 17dc
+e_flags : 0
+e_ehsize : 34
+e_phentsize : 20
+e_phnum : 9
+e_shentsize : 28
+e_shnum : 1f
+e_shstrndx : 1c
+
+Section header list:
+[ 0]	.interp	SHT_PROGBITS	0x8048154
+[ 1]	.note.ABI-tag	SHT_NOTE	0x8048168
+[ 2]	.note.gnu.build-id	SHT_NOTE	0x8048188
+[ 3]	.gnu.hash	NOT_FIND	0x80481ac
+[ 4]	.dynsym	SHT_DYNSYM	0x80481cc
+[ 5]	.dynstr	SHT_STRTAB	0x804821c
+[ 6]	.gnu.version	NOT_FIND	0x8048266
+[ 7]	.gnu.version_r	NOT_FIND	0x8048270
+[ 8]	.rel.dyn	SHT_REL	0x8048290
+[ 9]	.rel.plt	SHT_REL	0x8048298
+[10]	.init	SHT_PROGBITS	0x80482a8
+[11]	.plt	SHT_PROGBITS	0x80482d0
+[12]	.plt.got	SHT_PROGBITS	0x8048300
+[13]	.text	SHT_PROGBITS	0x8048310
+[14]	.fini	SHT_PROGBITS	0x80484a4
+[15]	.rodata	SHT_PROGBITS	0x80484b8
+[16]	.eh_frame_hdr	SHT_PROGBITS	0x80484d0
+[17]	.eh_frame	SHT_PROGBITS	0x80484fc
+[18]	.init_array	SHT_INIT_ARRAY	0x8049f08
+[19]	.fini_array	SHT_FINI_ARRAY	0x8049f0c
+[20]	.jcr	SHT_PROGBITS	0x8049f10
+[21]	.dynamic	SHT_DYNAMIC	0x8049f14
+[22]	.got	SHT_PROGBITS	0x8049ffc
+[23]	.got.plt	SHT_PROGBITS	0x804a000
+[24]	.data	SHT_PROGBITS	0x804a014
+[25]	.bss	SHT_NOBITS	0x804a01c
+[26]	.comment	SHT_PROGBITS	0x0
+[27]	.shstrtab	SHT_STRTAB	0x0
+[28]	.symtab	SHT_SYMTAB	0x0
+[29]	.strtab	SHT_STRTAB	0x0
+
+Program header list
+[0]	PT_PHDR	Phdr segment	0x8048034
+[1]	PT_INTERP	Interpreter	/lib/ld-linux.so.2
+[2]	PT_LOAD	Text segment	0x8048000
+[3]	PT_LOAD	Data segment	0x8049f08
+[4]	PT_DYNAMIC	Dynamic segment	0x8049f14
+[5]	PT_NOTE	Note segment	0x8048168
+[6]	PT_GNU_EH_FRAME	segment	0x80484d0
+[7]	PT_GNU_STACK	segment	0x0
+[8]	PT_GNU_RELRO	segment	0x8049f08
