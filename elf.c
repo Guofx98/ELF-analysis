@@ -12,26 +12,30 @@
 void switch64(FILE* fp, Elf64_Word type);
 void switch32(FILE* fp, Elf32_Word type);
 
-int readfile(char *str){                              //str为文件名
+int readfile(char *str){              //str为文件名
 	struct stat st;	              //stat结构体，linux中描述文件属性的结构
 	long sys_size;
 	size_t rt;
+	
 	//打开文件
 	FILE *fp=fopen(str,"r");
 	if(!fp){
 		perror("open error");
 		exit(1);
 	}
+
 	//获得文件长度
 	fseek(fp,0,SEEK_END);
 	sys_size=ftell(fp);
 	rewind(fp);
+	
 	//根据文件长度判断是不是elf文件
 	if(sys_size<sizeof(Elf32_Ehdr)||sys_size<sizeof(Elf64_Ehdr))
 	{
 		printf("The file isn't a ELF file!\n");
 		exit(1);
 	}
+	
 	//根据Magic（魔数）来判断是不是elf文件
 	char buf[EI_NIDENT]={0};
 	rt=fread(buf,1,EI_NIDENT,fp);
@@ -40,6 +44,7 @@ int readfile(char *str){                              //str为文件名
 		exit(0);
 	}
 	rewind(fp);
+	
 	//魔数的第五个16进制数代表文件位数，返回对应的文件位数
 	if(buf[4]==0x02)
 		return 64;
@@ -47,6 +52,7 @@ int readfile(char *str){                              //str为文件名
 		return 32;
 	
 }
+
 //打印elf文件头函数
 int writeHead64(FILE* fp, Elf64_Ehdr* ehdr, Elf64_Phdr* phdr, Elf64_Shdr* shdr) {
 	int i;
@@ -69,6 +75,7 @@ int writeHead64(FILE* fp, Elf64_Ehdr* ehdr, Elf64_Phdr* phdr, Elf64_Shdr* shdr) 
 	fprintf(fp, "e_shstrndx : %x\n", ehdr->e_shstrndx);
 	fprintf(fp, "\n");
 }
+
 int writeHead32(FILE* fp, Elf32_Ehdr* ehdr, Elf32_Phdr* phdr, Elf32_Shdr* shdr) {
 	int i;
 	fprintf(fp,"Magic : ");
@@ -90,6 +97,7 @@ int writeHead32(FILE* fp, Elf32_Ehdr* ehdr, Elf32_Phdr* phdr, Elf32_Shdr* shdr) 
 	fprintf(fp, "e_shstrndx : %x\n", ehdr->e_shstrndx);
 	fprintf(fp, "\n");
 }
+
 //打印section部分和program部分的函数
 int writeSection64(FILE* fp, uint8_t* buf,Elf64_Ehdr* ehdr, Elf64_Phdr* phdr, Elf64_Shdr* shdr) {
 	
@@ -142,6 +150,7 @@ int writeSection64(FILE* fp, uint8_t* buf,Elf64_Ehdr* ehdr, Elf64_Phdr* phdr, El
 	}
 	return 0;
 }
+
 int writeSection32(FILE* fp, uint8_t *buf,Elf32_Ehdr* ehdr, Elf32_Phdr* phdr, Elf32_Shdr* shdr) {
 	char* StringTable, * interp;
 	int i;
@@ -192,6 +201,7 @@ int writeSection32(FILE* fp, uint8_t *buf,Elf32_Ehdr* ehdr, Elf32_Phdr* phdr, El
 	}
 	return 0;
 }
+
 int main(int argc,char *argv[])
 {
 	if(argc < 2){
@@ -338,6 +348,7 @@ void switch64(FILE *fp,Elf64_Word type)
 	}
 
 }
+
 void switch32(FILE* fp, Elf32_Word type)
 {
 	switch (type) {
